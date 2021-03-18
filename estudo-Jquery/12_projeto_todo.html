@@ -120,7 +120,8 @@
 					})
 
 					this.$container.on('click', '.btn', e => {
-						this.deleteTask($(e.target).closest('.list-group-item'))
+						var item = $(e.target).closest('.list-group-item')
+						this.deleteTask( item.index() )
 					})
 				},
 				addTask: function(task){
@@ -130,8 +131,8 @@
 
 					this.$input.val('').focus()
 				},
-				deleteTask: function(itemToDelete) {
-					itemToDelete.fadeOut(500, function() {
+				deleteTask: function(index) {
+					this.$container.find('.list-group-item').eq(index).fadeOut(500, function() {
 						$(this).remove()
 					});
 				}
